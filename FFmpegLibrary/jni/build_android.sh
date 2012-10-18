@@ -270,11 +270,8 @@ EOF
 	    --enable-demuxer=h263 \
 	    --enable-demuxer=mpegps \
 	    --enable-demuxer=mjpeg \
-	    --enable-demuxer=rtsp \
-	    --enable-demuxer=rtp \
 	    --enable-demuxer=hls \
 	    --enable-demuxer=matroska \
-	    --enable-muxer=rtsp \
 	    --enable-muxer=mp4 \
 	    --enable-muxer=mov \
 	    --enable-muxer=mjpeg \
@@ -288,11 +285,6 @@ EOF
 	    --enable-protocol=applehttp \
 	    --enable-protocol=hls \
 	    --enable-protocol=http \
-	    --enable-decoder=xsub \
-	    --enable-decoder=jacosub \
-	    --enable-decoder=dvdsub \
-	    --enable-decoder=dvbsub \
-	    --enable-decoder=subviewer \
 	    --enable-decoder=rawvideo \
 	    --enable-encoder=rawvideo \
 	    --enable-decoder=mjpeg \
@@ -319,15 +311,15 @@ EOF
 	    --enable-avcodec \
 	    --enable-avresample \
 	    --enable-zlib \
+	    --enable-avfilter \
+	    --enable-filter=deshake \
 	    --disable-doc \
 	    --disable-ffplay \
 	    --disable-ffmpeg \
 	    --disable-ffplay \
 	    --disable-ffprobe \
 	    --disable-ffserver \
-	    --disable-avfilter \
 	    --disable-avdevice \
-	    --enable-nonfree \
 	    --enable-version3 \
 	    --enable-memalign-hack \
 	    --enable-asm \
@@ -347,23 +339,23 @@ function build_one {
 }
 
 #arm v5
-EABIARCH=arm-linux-androideabi
-ARCH=arm
-CPU=armv5
-OPTIMIZE_CFLAGS="-marm -march=$CPU"
-PREFIX=../ffmpeg-build/armeabi
-OUT_LIBRARY=$PREFIX/libffmpeg.so
-ADDITIONAL_CONFIGURE_FLAG=
-SONAME=libffmpeg.so
-PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$OS-x86
-PLATFORM_VERSION=android-5
-build_amr
-build_aac
-build_fribidi
-build_freetype2
-build_ass
-build_ffmpeg
-build_one
+#EABIARCH=arm-linux-androideabi
+#ARCH=arm
+#CPU=armv5
+#OPTIMIZE_CFLAGS="-marm -march=$CPU"
+#PREFIX=../ffmpeg-build/armeabi
+#OUT_LIBRARY=$PREFIX/libffmpeg.so
+#ADDITIONAL_CONFIGURE_FLAG=
+#SONAME=libffmpeg.so
+#PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$OS-x86
+#PLATFORM_VERSION=android-5
+#build_amr
+#build_aac
+#build_fribidi
+#build_freetype2
+#build_ass
+#build_ffmpeg
+#build_one
 
 #x86
 EABIARCH=i686-linux-android
@@ -384,57 +376,57 @@ build_ffmpeg
 build_one
 
 #mips
-EABIARCH=mipsel-linux-android
-ARCH=mips
-OPTIMIZE_CFLAGS="-EL -march=mips32 -mips32 -mhard-float"
-PREFIX=../ffmpeg-build/mips
-OUT_LIBRARY=$PREFIX/libffmpeg.so
-ADDITIONAL_CONFIGURE_FLAG="--disable-mips32r2"
-SONAME=libffmpeg.so
-PREBUILT=$NDK/toolchains/mipsel-linux-android-4.4.3/prebuilt/$OS-x86
-PLATFORM_VERSION=android-9
-build_amr
-build_aac
-build_fribidi
-build_freetype2
-build_ass
-build_ffmpeg
-build_one
+#EABIARCH=mipsel-linux-android
+#ARCH=mips
+#OPTIMIZE_CFLAGS="-EL -march=mips32 -mips32 -mhard-float"
+#PREFIX=../ffmpeg-build/mips
+#OUT_LIBRARY=$PREFIX/libffmpeg.so
+#ADDITIONAL_CONFIGURE_FLAG="--disable-mips32r2"
+#SONAME=libffmpeg.so
+#PREBUILT=$NDK/toolchains/mipsel-linux-android-4.4.3/prebuilt/$OS-x86
+#PLATFORM_VERSION=android-9
+#build_amr
+#build_aac
+#build_fribidi
+#build_freetype2
+#build_ass
+#build_ffmpeg
+#build_one
 
 #arm v7vfpv3
-EABIARCH=arm-linux-androideabi
-ARCH=arm
-CPU=armv7-a
-OPTIMIZE_CFLAGS="-mfloat-abi=softfp -mfpu=vfpv3-d16 -marm -march=$CPU "
-PREFIX=../ffmpeg-build/armeabi-v7a
-OUT_LIBRARY=$PREFIX/libffmpeg.so
-ADDITIONAL_CONFIGURE_FLAG=
-SONAME=libffmpeg.so
-PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$OS-x86
-PLATFORM_VERSION=android-5
-build_amr
-build_aac
-build_fribidi
-build_freetype2
-build_ass
-build_ffmpeg
-build_one
+#EABIARCH=arm-linux-androideabi
+#ARCH=arm
+#CPU=armv7-a
+#OPTIMIZE_CFLAGS="-mfloat-abi=softfp -mfpu=vfpv3-d16 -marm -march=$CPU "
+#PREFIX=../ffmpeg-build/armeabi-v7a
+#OUT_LIBRARY=$PREFIX/libffmpeg.so
+#ADDITIONAL_CONFIGURE_FLAG=
+#SONAME=libffmpeg.so
+#PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$OS-x86
+#PLATFORM_VERSION=android-5
+#build_amr
+#build_aac
+#build_fribidi
+#build_freetype2
+#build_ass
+#build_ffmpeg
+#build_one
 
 #arm v7 + neon (neon also include vfpv3-32)
-EABIARCH=arm-linux-androideabi
-ARCH=arm
-CPU=armv7-a
-OPTIMIZE_CFLAGS="-mfloat-abi=softfp -mfpu=neon -marm -march=$CPU -mtune=cortex-a8 -mthumb -D__thumb__ "
-PREFIX=../ffmpeg-build/armeabi-v7a-neon
-OUT_LIBRARY=../ffmpeg-build/armeabi-v7a/libffmpeg-neon.so
-ADDITIONAL_CONFIGURE_FLAG=--enable-neon
-SONAME=libffmpeg-neon.so
-PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$OS-x86
-PLATFORM_VERSION=android-9
-build_amr
-build_aac
-build_fribidi
-build_freetype2
-build_ass
-build_ffmpeg
-build_one
+#EABIARCH=arm-linux-androideabi
+#ARCH=arm
+#CPU=armv7-a
+#OPTIMIZE_CFLAGS="-mfloat-abi=softfp -mfpu=neon -marm -march=$CPU -mtune=cortex-a8 -mthumb -D__thumb__ "
+#PREFIX=../ffmpeg-build/armeabi-v7a-neon
+#OUT_LIBRARY=../ffmpeg-build/armeabi-v7a/libffmpeg-neon.so
+#ADDITIONAL_CONFIGURE_FLAG=--enable-neon
+#SONAME=libffmpeg-neon.so
+#PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.4.3/prebuilt/$OS-x86
+#PLATFORM_VERSION=android-9
+#build_amr
+#build_aac
+#build_fribidi
+#build_freetype2
+#build_ass
+#build_ffmpeg
+#build_one

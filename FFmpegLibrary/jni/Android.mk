@@ -23,7 +23,6 @@ LIBRARY_PROFILER:=
 LIBRARY_YUV2RGB:=
 MODULE_ENCRYPT:=
 
-
 #settings
 
 # add support for encryption

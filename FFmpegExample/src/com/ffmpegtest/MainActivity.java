@@ -246,7 +246,7 @@ public class MainActivity extends Activity implements OnClickListener,
 		// url = "file://" + videoFile.getAbsolutePath();
 
 		File videoFile = new File(Environment.getExternalStorageDirectory(),
-				"videos/ThreeMenInABoatToSayNothingOfTheDog_RUS_eng_1500.mp4");
+				"Sassy.mkv");
 //		File videoFile = new File(Environment.getExternalStorageDirectory(),
 //				"videos/no.mkv");
 		url = "file://" + videoFile.getAbsolutePath();
